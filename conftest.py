@@ -18,10 +18,13 @@ def browser():
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
         options.add_argument('--disable-gpu')
+        options.add_argument('--window-size=1920,1080') # Headless 시 요소 안보임 방지
         print(f"\n[INFO] Environment: {current_os} -> Running in Headless mode")
     
     # 윈도우나 맥(로컬 개발) 환경인 경우 GUI 모드
     else:
+        # GUI 환경에서 최대화해서 요소가 안 보이는 걸 방지
+        options.add_argument("--start-maximized")
         print(f"\n[INFO] Environment: {current_os} -> Running in GUI mode")
 
     driver = webdriver.Chrome(options=options)
